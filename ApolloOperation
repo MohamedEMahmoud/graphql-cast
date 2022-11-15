@@ -1,0 +1,86 @@
+query GetAllUsers {
+  users {
+    id
+    name
+    username
+    nationality
+    friends {
+      name
+      nationality
+    }
+  }
+}
+
+query getUser($userId: ID!) {
+user(id: $userId) {
+  id
+  username
+  name
+  age
+ friends {
+   id
+   name
+   age
+ } 
+ favoriteMovies {
+   name
+ }
+}
+}
+
+query getAllMovies {
+  movies {
+    id
+    yearOfPublication
+    name
+    isInTheaters
+  }
+}
+
+query getMovie($name: String!){
+  movie(name: $name) {
+    id
+    name
+    yearOfPublication
+    isInTheaters
+  }
+}
+query getFavorite($userId: ID!){
+  user(id: $userId) {
+    name
+    friends {
+      name
+      age
+    }
+    favoriteMovies {
+      id
+      name
+      yearOfPublication
+    }
+  }
+}
+
+mutation CreateUser($input: CreateUser!) {
+  createUser(input: $input) {
+    id
+    name
+    username
+    age
+    nationality
+  }
+}
+
+mutation UpdateUser($input: UpdateUser!){
+  updateUser(input: $input) {
+      id
+      name
+      username
+      age
+      nationality
+  }
+}
+mutation DeleteUser($deleteUserId: ID!){
+deleteUser(id: $deleteUserId) {
+  id
+}
+}
